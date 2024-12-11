@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
-#include <map>
+#include <map> //Pentru a gestiona asocierea dintre litere si codurile lor
 using namespace std;
 
 int main()
 {
-    map<char, string> codificare;  // Map pentru codificare
+    map<char, string> codificare;  // Map pentru codificare,pt a asocia fiecare litera cu un cod n
     map<string, char> decodificare;  // Map pentru decodificare
     string mesaj, mesaj_codificat;
 
@@ -14,7 +14,7 @@ int main()
 
     // Citim de la tastatură codificarea pentru fiecare literă a alfabetului
     for (char litera = 'a'; litera <= 'z'; litera++) 
-{
+    {
         string cod;
         cout << "Cod pentru litera '" << litera << "': ";
         cin >> cod;
@@ -24,7 +24,7 @@ int main()
 
     // Mapăm literele mari la aceleași coduri
     for (char litera = 'A'; litera <= 'Z'; litera++) 
-{
+    {
         codificare[litera] = codificare[litera + 32]; // litera + 32 = litera mică
         decodificare[codificare[litera]] = litera;   // Mapăm invers și pentru litere mari
     }
@@ -35,6 +35,7 @@ int main()
     codificare[','] = ","; // Virgulele rămân virgule
     codificare['!'] = "!"; // Semnul exclamării
     codificare['?'] = "?"; //Semnul întrebării 
+
     //Decodificam caracterele speciale
     decodificare[" "] = ' '; // Spațiul rămâne spațiu
     decodificare["."] = '.'; // Punctele rămân puncte
@@ -49,11 +50,14 @@ int main()
 
     // Codificăm mesajul
     mesaj_codificat = "";
-    for (char c : mesaj) 
+    for (char c : mesaj) //procesam pe rand fiecare carcater din sirul mesajului 
 {
-        if (codificare.count(c)) { // Dacă există în map
-            mesaj_codificat += codificare[c] + " ";
-        } else {
+        if (codificare.count(c))  // Verificam daca cheia c există în map
+        {
+            mesaj_codificat += codificare[c] + " "; //adaugam spatiu intre coduri
+        } 
+        else 
+        {
             mesaj_codificat += "? "; // Caracter necunoscut
         }
     }
