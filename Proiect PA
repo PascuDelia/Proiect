@@ -58,7 +58,7 @@ int main()
         } 
         else 
         {
-            mesaj_codificat += "? "; // Caracter necunoscut
+            mesaj_codificat += "*"; // Caracter necunoscut
         }
     }
 
@@ -77,7 +77,7 @@ int main()
         if (decodificare.count(cod)) { // Dacă codul există în map-ul de decodificare
             mesaj_descifrat += decodificare[cod];
         } else {
-            mesaj_descifrat += "?"; // Caracter necunoscut
+            mesaj_descifrat += "*"; // Caracter necunoscut
         }
         start = end + 1; // Avansăm la următorul cod
     }
