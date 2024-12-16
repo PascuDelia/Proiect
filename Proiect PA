@@ -1,2 +1,41 @@
+#include<iostream>
+#include<string>
+#incude<map>
+using namespace std;
+int main()
+{
+map<char,string> codif;
+map<string,char>decodif;
+string m, m_codif;
+cout<<"Limbaj Secret\n";
+cout<<"Introduceti codificarea pentru fiecare litera a alfabetului:\n";
 
-    
+//Citim de la tastaura codificarea pentru fiecare litera din alfabet
+for(char l='a'; l<='z';l++)
+    {
+    string cod;
+    cout<<"Codul pentru litera ' "<<l<<" ' este:";
+    cin>>cod;
+    codif[l]=cod;
+    decodif[cod]=l;
+    }
+
+//Codificarea pentru literele mari din alfabet
+for(char l='A'; l<='Z';l++)
+{
+codif[l]=codif[l+32];
+decodif[codif]=l;
+}
+//Codificam carcaterele speciale
+codif['.']=".";
+codif[',']=",";
+codif['!']="!";
+codif['?']="?";
+codif[' ']=" ";
+
+//Decodificam caracterele speciale
+decodif["."]='.';
+decodif[","]=',';
+decodif["!"]='!';
+decodif["?"]='?';
+decodif[" "]=' ';
