@@ -1,7 +1,9 @@
 #include<iostream>
 #include<string>
-#incude<map>
+#include<map>
+
 using namespace std;
+
 int main()
 {
 map<char,string> codif;
@@ -11,19 +13,19 @@ cout<<"Limbaj Secret\n";
 cout<<"Introduceti codificarea pentru fiecare litera a alfabetului:\n";
 
 //Citim de la tastaura codificarea pentru fiecare litera din alfabet
-for(char l='a'; l<='z';l++)
+for(char l='A'; l<='Z';l++)
     {
     string cod;
-    cout<<"Codul pentru litera ' "<<l<<" ' este:";
+    cout<<"Codul pentru litera ' "<< l <<" ' este:";
     cin>>cod;
     codif[l]=cod;
     decodif[cod]=l;
     }
 
-//Codificarea pentru literele mari din alfabet
-for(char l='A'; l<='Z';l++)
+//Codificarea pentru literele mici din alfabet
+for(char l='a'; l<='z';l++)
 {
-codif[l]=codif[l+32];
+codif[l]=codif[l-32];
 decodif[codif]=l;
 }
 //Codificam carcaterele speciale
@@ -39,3 +41,24 @@ decodif[","]=',';
 decodif["!"]='!';
 decodif["?"]='?';
 decodif[" "]=' ';
+
+//Citim mesajul de la utilizator
+cout<<"\nIntroduceti mesajul pe care vreti sa il codificati: ";
+cin.ignore(); 
+getline(cin, m);
+
+//Codificam mesajul 
+m_codif="";
+for(char c: m)
+{
+    if(codif.count(c)) //Verificam daca cxheia c exista in map
+    {
+        m_codif+=codif[c]+" "; //Adaugam spatiu intre coduri
+    }
+    else
+    {
+        m_codif+="*";
+    }
+}
+cout<<"\nMesajul codificat este: \n"<<m_codif<<endl;
+}
